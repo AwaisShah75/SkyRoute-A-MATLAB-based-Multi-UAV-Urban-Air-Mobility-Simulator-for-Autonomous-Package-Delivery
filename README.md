@@ -21,7 +21,7 @@ The system features two distinct animation capture modes to highlight different 
 | :---: | :---: |
 | **Wide-Angle Sweeping Orbit** | **Dynamic Target Tracker** |
 | Shows the coordinated behavior of the entire 10-UAV logistics network, skyscrapers, obstacles, and park plazas from an 18mm camera. | Locks behind a single drone, illustrating high-speed corridor weaving and reactive yielding to priority traffic. |
-| <video src="media/cinematic_overview.mp4" controls width="100%"></video> | <video src="media/drone_chase.mp4" controls width="100%"></video> |
+| <video src="Cinmatic.mp4" controls width="100%"></video> | <video src="Chase.mp4" controls width="100%"></video> |
 
 ---
 

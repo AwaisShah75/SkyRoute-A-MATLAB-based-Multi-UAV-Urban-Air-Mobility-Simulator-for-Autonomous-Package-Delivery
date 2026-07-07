@@ -47,6 +47,20 @@ The multiple lines traced in the sky represent this entire **Base ➔ Goal 1 ➔
 
 ---
 
+## 🖥️ MATLAB 3D Simulation Results
+
+The following captures are taken directly from MATLAB's `uavScenario` 3D viewer, showing the planned RRT* trajectories for all 10 drones navigating through the 40-skyscraper city from multiple viewing angles:
+
+| | |
+|:---:|:---:|
+| ![View 1](media/matlab_view_1.png) | ![View 2](media/matlab_view_2.png) |
+
+<p align="center">
+  <img src="media/matlab_view_3.png" width="70%">
+</p>
+
+---
+
 *   **🎨 High-Fidelity 3D Blender Co-Simulation:** Exporter pipeline reads MATLAB simulation logs (`simulation_metadata.json` + CSVs) to dynamically assemble a 40-skyscraper city layout, detailed quadcopters with spinning propellers, custom neon flight paths, and keyframed delivery banners in a stylized, high-performance outline render style.
 
 ---

@@ -17,11 +17,11 @@ The simulation features two rendering perspectives to capture the behavior of th
 
 ### 1. Dynamic Single Drone Chase System
 Locks behind a single drone, illustrating high-speed corridor weaving and reactive yielding to higher-priority traffic.
-![Chase Cam Video](Chase.mp4)
+<video src="Chase.mp4" controls="controls" width="100%"></video>
 
 ### 2. Cinematic Overview (Complete Structure)
 Shows the coordinated behavior of the entire 10-UAV logistics network, skyscrapers, obstacles, and park plazas from an 18mm sweeping orbit camera.
-![Cinematic Overview Video](Cinmatic.mp4)
+<video src="Cinmatic.mp4" controls="controls" width="100%"></video>
 
 ---
 

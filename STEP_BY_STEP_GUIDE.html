@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Multi-UAV Path Planning — Complete Step-by-Step Guide</title>
+<style>
+  body { font-family: Calibri, 'Segoe UI', Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #222; line-height: 1.6; }
+  h1 { color: #1a5276; border-bottom: 3px solid #1a5276; padding-bottom: 10px; }
+  h2 { color: #2e86c1; margin-top: 40px; border-bottom: 1px solid #ddd; padding-bottom: 6px; }
+  h3 { color: #2874a6; }
+  code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-family: Consolas, 'Courier New', monospace; font-size: 0.95em; }
+  pre { background: #f8f8f8; border: 1px solid #ddd; border-radius: 5px; padding: 14px; overflow-x: auto; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+  th { background: #2e86c1; color: white; }
+  tr:nth-child(even) { background: #f2f7fb; }
+  blockquote { border-left: 4px solid #2e86c1; margin: 16px 0; padding: 10px 16px; background: #eaf2f8; }
+  .warning { border-left-color: #e74c3c; background: #fdedec; }
+  .tip { border-left-color: #27ae60; background: #eafaf1; }
+  .checklist { list-style: none; padding-left: 5px; }
+  .checklist li::before { content: "☐ "; font-size: 1.1em; }
+  hr { border: none; border-top: 2px solid #ddd; margin: 30px 0; }
+</style>
+</head>
+<body>
+
+<h1>Multi-UAV Path Planning — Complete Step-by-Step Guide</h1>
+<p><strong>From Zero to Working Demo</strong></p>
+<p>
+  <strong>Author:</strong> Awais Shah<br>
+  <strong>Project:</strong> Multi-UAV Path Planning for Urban Air Mobility — Phase 1<br>
+  <strong>Date:</strong> July 2026
+</p>
+
+<hr>
+
+<h2>Table of Contents</h2>
+<ol>
+  <li>Choose Your MATLAB Option</li>
+  <li>Create a MathWorks Account</li>
+  <li>MATLAB Online Setup / MATLAB Desktop Installation</li>
+  <li>Install Required Toolboxes</li>
+  <li>Verify Toolbox Installation</li>
+  <li>Upload / Place Project Files</li>
+  <li>Understand the Project Files</li>
+  <li>Run the Simulation</li>
+  <li>What You Should See</li>
+  <li>Troubleshooting Common Errors</li>
+  <li>Record Your Demo Video</li>
+  <li>Next Steps (Phase 2+)</li>
+</ol>
+
+<hr>
+
+<!-- ======== STEP 1 ======== -->
+<h2>Step 1 — Choose Your MATLAB Option</h2>
+<p>You have two ways to use MATLAB. Pick one:</p>
+
+<table>
+  <tr><th>Option</th><th>Cost</th><th>Pros</th><th>Cons</th></tr>
+  <tr>
+    <td><strong>MATLAB Online</strong> (browser)</td>
+    <td>Free tier: 20 hrs/month</td>
+    <td>No install needed, works on any PC</td>
+    <td>Limited hours, slower for heavy computation</td>
+  </tr>
+  <tr>
+    <td><strong>MATLAB Desktop</strong> (installed)</td>
+    <td>Free 30-day trial, or student license (~$50/year)</td>
+    <td>Unlimited hours, faster</td>
+    <td>Large download (~10-20 GB), needs decent PC</td>
+  </tr>
+</table>
+
+<blockquote class="tip">
+  <strong>💡 Recommendation:</strong> Start with MATLAB Online to avoid wasting time on installation. Switch to Desktop if you run out of hours.
+</blockquote>
+
+<hr>
+
+<!-- ======== STEP 2 ======== -->
+<h2>Step 2 — Create a MathWorks Account</h2>
+<ol>
+  <li>Open your browser and go to: <strong>https://www.mathworks.com/mwaccount/register</strong></li>
+  <li>Fill in:
+    <ul>
+      <li><strong>Email:</strong> Use your university email if you have one (gives access to student licenses)</li>
+      <li><strong>Country, Name, Password</strong> — fill as normal</li>
+    </ul>
+  </li>
+  <li>Click <strong>Create</strong> → check your email inbox → click the verification link</li>
+  <li>You now have a MathWorks account</li>
+</ol>
+
+<blockquote>
+  <strong>⚠️ Important:</strong> Remember your MathWorks email and password. You'll need them for everything.
+</blockquote>
+
+<hr>
+
+<!-- ======== STEP 3A ======== -->
+<h2>Step 3A — MATLAB Online Setup</h2>
+<p><em>Skip this section if you chose Desktop installation (go to Step 3B).</em></p>
+
+<ol>
+  <li>Go to: <strong>https://matlab.mathworks.com/</strong></li>
+  <li>Sign in with your MathWorks account</li>
+  <li>Click <strong>Open MATLAB Online</strong></li>
+  <li>Wait for the browser-based MATLAB environment to load (takes 30-60 seconds)</li>
+  <li>You should see:
+    <ul>
+      <li><strong>Command Window</strong> (bottom) — where you type commands</li>
+      <li><strong>Current Folder</strong> panel (left) — your file browser</li>
+      <li><strong>Editor</strong> (center/right) — where you open and edit .m files</li>
+    </ul>
+  </li>
+</ol>
+
+<blockquote>
+  <strong>📝 Note:</strong> Your 20 free hours start counting only when MATLAB Online is open. Close the tab when you're not using it.
+</blockquote>
+
+<p><strong>Done! Jump to Step 4.</strong></p>
+
+<hr>
+
+<!-- ======== STEP 3B ======== -->
+<h2>Step 3B — MATLAB Desktop Installation</h2>
+<p><em>Skip this section if you chose MATLAB Online (go to Step 4).</em></p>
+
+<h3>Download MATLAB</h3>
+<ol>
+  <li>Go to: <strong>https://www.mathworks.com/downloads/</strong></li>
+  <li>Sign in with your MathWorks account</li>
+  <li>Select <strong>MATLAB R2024b</strong> (or the latest version shown)</li>
+  <li>Click <strong>Download for Windows</strong> (or Mac/Linux as applicable)</li>
+  <li>The installer file will download (~300 MB initial downloader)</li>
+</ol>
+
+<h3>Install MATLAB</h3>
+<ol>
+  <li>Run the downloaded installer (<code>matlab_R2024b_win64.exe</code>)</li>
+  <li>Sign in with your MathWorks account when prompted</li>
+  <li>Accept the license agreement</li>
+  <li><strong>License selection:</strong>
+    <ul>
+      <li>If you have a student license → select it</li>
+      <li>If you're using a trial → select "30-Day Trial"</li>
+    </ul>
+  </li>
+  <li><strong>Product selection screen</strong> — This is critical. Check these boxes:
+    <ul>
+      <li>☑ <strong>MATLAB</strong> (always included)</li>
+      <li>☑ <strong>UAV Toolbox</strong></li>
+      <li>☑ <strong>Navigation Toolbox</strong></li>
+      <li>☑ <strong>Sensor Fusion and Tracking Toolbox</strong> (needed for Phase 2+)</li>
+      <li>☑ <strong>Simulink</strong> (useful later, optional for Phase 1)</li>
+    </ul>
+  </li>
+  <li>Click <strong>Install</strong> → wait for download and installation (10-20 GB, takes 30-90 minutes depending on internet speed)</li>
+  <li>When finished, click <strong>Close</strong> and launch MATLAB from your Start Menu / Desktop shortcut</li>
+</ol>
+
+<p><strong>Done! Jump to Step 5.</strong></p>
+
+<hr>
+
+<!-- ======== STEP 4 ======== -->
+<h2>Step 4 — Install Required Toolboxes</h2>
+
+<h3>If Using MATLAB Online:</h3>
+<p>MATLAB Online includes many toolboxes by default. To check/add:</p>
+<ol>
+  <li>In MATLAB Online, click the <strong>"Add-Ons"</strong> button in the top toolbar (or go to Home tab → Add-Ons → Get Add-Ons)</li>
+  <li>Search for each of these and click <strong>"Add"</strong> if not already installed:
+    <ul>
+      <li><strong>UAV Toolbox</strong></li>
+      <li><strong>Navigation Toolbox</strong></li>
+      <li><strong>Sensor Fusion and Tracking Toolbox</strong></li>
+    </ul>
+  </li>
+  <li>If prompted, agree to any license terms and wait for installation</li>
+</ol>
+
+<h3>If Using MATLAB Desktop:</h3>
+<ol>
+  <li>In MATLAB, go to <strong>Home</strong> tab → <strong>Add-Ons</strong> → <strong>Get Add-Ons</strong></li>
+  <li>The Add-On Explorer opens</li>
+  <li>Search for: <strong>UAV Toolbox</strong> → Click <strong>Install</strong></li>
+  <li>Search for: <strong>Navigation Toolbox</strong> → Click <strong>Install</strong></li>
+  <li>Search for: <strong>Sensor Fusion and Tracking Toolbox</strong> → Click <strong>Install</strong></li>
+  <li>MATLAB may ask you to restart — do it</li>
+</ol>
+
+<hr>
+
+<!-- ======== STEP 5 ======== -->
+<h2>Step 5 — Verify Toolbox Installation</h2>
+<p>This step confirms everything is installed correctly before you run the project.</p>
+
+<h3>Test 1: Check installed toolboxes</h3>
+<p>Type this in the MATLAB <strong>Command Window</strong> and press Enter:</p>
+<pre>ver</pre>
+<p>You should see a list that includes at least:</p>
+<pre>MATLAB                                   Version X.X
+UAV Toolbox                              Version X.X
+Navigation Toolbox                       Version X.X</pre>
+<p>If any of these are missing, go back to Step 4.</p>
+
+<h3>Test 2: Check that key functions exist</h3>
+<p>Type each of these one at a time and press Enter:</p>
+<pre>help uavScenario</pre>
+<p>→ Should print the help text for uavScenario (not an error)</p>
+<pre>help occupancyMap3D</pre>
+<p>→ Should print help text</p>
+<pre>help plannerRRTStar</pre>
+<p>→ Should print help text</p>
+
+<h3>Test 3: Quick smoke test</h3>
+<pre>scene = uavScenario('UpdateRate', 10);
+disp('UAV Toolbox is working!')</pre>
+<p>If you see <code>UAV Toolbox is working!</code> — you're all set.<br>
+If you see an error like <code>Undefined function 'uavScenario'</code> — the UAV Toolbox is not installed. Repeat Step 4.</p>
+
+<hr>
+
+<!-- ======== STEP 6 ======== -->
+<h2>Step 6 — Upload / Place Project Files</h2>
+<p>Your project has <strong>4 MATLAB script files</strong>. They must all be in the <strong>same folder</strong>.</p>
+
+<table>
+  <tr><th>File</th><th>Purpose</th></tr>
+  <tr><td><code>main_phase1.m</code></td><td>The main script you run — configures everything and calls the others</td></tr>
+  <tr><td><code>create_city_scenario.m</code></td><td>Builds the 3D city with 9 buildings and a ground plane</td></tr>
+  <tr><td><code>plan_uav_path.m</code></td><td>Plans a collision-free path using the RRT* algorithm</td></tr>
+  <tr><td><code>animate_uav.m</code></td><td>Animates the drone flying the planned path in 3D</td></tr>
+</table>
+
+<h3>If Using MATLAB Online:</h3>
+<ol>
+  <li>In the <strong>Current Folder</strong> panel (left side), click the <strong>Upload</strong> button (↑ icon)</li>
+  <li>Select all 4 <code>.m</code> files from your computer</li>
+  <li>Click <strong>Open</strong> → files appear in your MATLAB Online workspace</li>
+</ol>
+
+<h3>If Using MATLAB Desktop:</h3>
+<ol>
+  <li>Create a project folder, e.g.: <code>C:\Users\YourName\Documents\MATLAB\UAV_PathPlanning\</code></li>
+  <li>Copy all 4 <code>.m</code> files into that folder</li>
+  <li>In MATLAB, navigate to that folder using the Current Folder panel on the left</li>
+  <li>Verify the files are visible in the Current Folder panel</li>
+</ol>
+
+<hr>
+
+<!-- ======== STEP 7 ======== -->
+<h2>Step 7 — Understand the Project Files</h2>
+<p>Before running anything, here's what each file does and how they connect:</p>
+
+<h3>How the files work together:</h3>
+<pre>
+main_phase1.m  (you run THIS)
+    │
+    ├──► create_city_scenario.m
+    │        Creates 9 buildings in a 3x3 grid
+    │        Creates a 3D occupancy map
+    │        Creates a green ground plane
+    │        Creates the quadrotor drone object
+    │        Returns: scenario, map3D, uav
+    │
+    ├──► plan_uav_path.m
+    │        Takes the 3D occupancy map
+    │        Inflates it by 1.5m (safety buffer)
+    │        Uses RRT* algorithm to find a collision-free 3D path
+    │        Returns: waypoints (the path), solnInfo (success/fail)
+    │
+    └──► animate_uav.m
+             Takes the scenario, drone, and waypoints
+             Calculates speed-based timing for each waypoint
+             Opens a 3D figure window
+             Plots the planned path in green
+             Marks Start (green square) and Goal (red star)
+             Animates the drone flying along the path
+</pre>
+
+<h3>Key concepts explained:</h3>
+
+<p><strong>What is RRT*?</strong><br>
+RRT* (Rapidly-exploring Random Tree Star) is a path planning algorithm. It randomly samples points in 3D space, builds a tree of collision-free connections, and finds the shortest path from start to goal while avoiding obstacles (buildings). The * means it optimizes the path over iterations — more iterations = shorter/smoother path.</p>
+
+<p><strong>What is an occupancy map?</strong><br>
+A 3D grid where each cell is marked as "occupied" (inside a building) or "free" (empty air). The RRT* planner uses this map to check if a path segment would crash into a building.</p>
+
+<p><strong>What does "inflate" mean?</strong><br>
+When we inflate the occupancy map by 1.5 meters, every building grows 1.5m in all directions on the map. This means the drone will never fly closer than 1.5m to any building surface — a safety buffer.</p>
+
+<p><strong>What is the <code>move()</code> function?</strong><br>
+Each frame of the animation, we calculate where the drone should be (by interpolating along the planned path) and tell MATLAB to place the drone there using <code>move(uav, motionVector)</code>. The motion vector has 16 numbers: position(3), velocity(3), orientation-quaternion(4), angular-velocity(3), acceleration(3).</p>
+
+<hr>
+
+<!-- ======== STEP 8 ======== -->
+<h2>Step 8 — Run the Simulation</h2>
+
+<h3>Pre-flight checklist:</h3>
+<ul class="checklist">
+  <li>MATLAB is open (Online or Desktop)</li>
+  <li>All 4 <code>.m</code> files are in your current folder</li>
+  <li>Current Folder panel shows all 4 files</li>
+  <li>Toolboxes are installed (Step 5 passed)</li>
+</ul>
+
+<h3>Run it:</h3>
+<ol>
+  <li>Type the following in the <strong>Command Window</strong> and press <strong>Enter</strong>:
+    <pre>main_phase1</pre>
+  </li>
+  <li><strong>Wait.</strong> The simulation has three stages:
+    <ul>
+      <li><strong>Stage 1 (instant):</strong> "Initializing city block scenario..." — builds the 3D world</li>
+      <li><strong>Stage 2 (5-30 seconds):</strong> "Computing RRT* path..." — the planner searches for a route</li>
+      <li><strong>Stage 3 (30-60 seconds):</strong> "Starting UAV flight animation..." — the drone flies</li>
+    </ul>
+  </li>
+  <li><strong>Do not close anything</strong> while it's running</li>
+</ol>
+
+<hr>
+
+<!-- ======== STEP 9 ======== -->
+<h2>Step 9 — What You Should See</h2>
+
+<h3>Command Window Output:</h3>
+<pre>Initializing city block scenario...
+Computing RRT* path...
+Planning path from [5.0, 5.0, 10.0] to [90.0, 90.0, 15.0]...
+Path found successfully in XXXX iterations!
+Animating flight simulation...
+Starting UAV flight animation (XX.X s at 3.0 m/s)...
+Animation complete.</pre>
+
+<h3>3D Figure Window:</h3>
+<p>A window opens showing:</p>
+<ol>
+  <li><strong>Green ground plane</strong> — the floor of the city</li>
+  <li><strong>9 gray cuboid buildings</strong> — arranged in a 3×3 grid with streets between them</li>
+  <li><strong>Green line with circle markers</strong> — the RRT* planned path</li>
+  <li><strong>Green square marker</strong> — the Start position at [5, 5, 10]</li>
+  <li><strong>Red star marker</strong> — the Goal position at [90, 90, 15]</li>
+  <li><strong>Blue quadrotor drone</strong> — flying along the green path</li>
+</ol>
+
+<blockquote>
+  <strong>📝 Note:</strong> Because RRT* is a randomized algorithm, the path will look slightly different every time you run it. This is normal.
+</blockquote>
+
+<h3>Interacting with the 3D view:</h3>
+<table>
+  <tr><th>Action</th><th>How</th></tr>
+  <tr><td>Rotate</td><td>Click and drag inside the figure</td></tr>
+  <tr><td>Zoom</td><td>Scroll mouse wheel</td></tr>
+  <tr><td>Pan</td><td>Hold Shift + click and drag</td></tr>
+  <tr><td>Reset view</td><td>Click the "Home" button in the figure toolbar</td></tr>
+</table>
+
+<hr>
+
+<!-- ======== STEP 10 ======== -->
+<h2>Step 10 — Troubleshooting Common Errors</h2>
+
+<h3>Error: <code>Undefined function or variable 'uavScenario'</code></h3>
+<p><strong>Cause:</strong> UAV Toolbox is not installed.<br>
+<strong>Fix:</strong> Go back to Step 4 and install the UAV Toolbox.</p>
+
+<h3>Error: <code>Undefined function or variable 'plannerRRTStar'</code></h3>
+<p><strong>Cause:</strong> Navigation Toolbox is not installed.<br>
+<strong>Fix:</strong> Go back to Step 4 and install the Navigation Toolbox.</p>
+
+<h3>Error: <code>Undefined function or variable 'stateSpaceSE3'</code></h3>
+<p><strong>Cause:</strong> Navigation Toolbox is not installed or is an older version.<br>
+<strong>Fix:</strong> Update the Navigation Toolbox via Add-Ons → Check for Updates.</p>
+
+<h3>Warning: <code>RRT* failed to find a collision-free path</code></h3>
+<p><strong>Cause:</strong> The planner couldn't find a valid route in 3000 iterations.<br>
+<strong>Fix:</strong> Run <code>main_phase1</code> again. If it keeps failing, increase iterations in <code>plan_uav_path.m</code> line 41:</p>
+<pre>planner.MaxIterations = 5000;   % was 3000, increased</pre>
+
+<h3>The 3D figure is blank or shows only the ground</h3>
+<p><strong>Cause:</strong> The camera might be positioned incorrectly.<br>
+<strong>Fix:</strong> Click the Rotate 3D button in the figure toolbar and drag to reorient.</p>
+
+<h3>MATLAB Online is very slow / animation stutters</h3>
+<p><strong>Fix:</strong></p>
+<ul>
+  <li>Close other browser tabs to free memory</li>
+  <li>Reduce map resolution: change <code>mapResolution = 1</code> to <code>mapResolution = 0.5</code> in <code>main_phase1.m</code></li>
+  <li>Or switch to MATLAB Desktop for smoother animation</li>
+</ul>
+
+<hr>
+
+<!-- ======== STEP 11 ======== -->
+<h2>Step 11 — Record Your Demo Video</h2>
+<p>Once the simulation runs successfully, record a demo video for your portfolio.</p>
+
+<h3>On Windows:</h3>
+<ol>
+  <li>Press <strong>Win + G</strong> to open the Xbox Game Bar</li>
+  <li>Click the <strong>Record</strong> button (or press <strong>Win + Alt + R</strong>)</li>
+  <li>Run <code>main_phase1</code> in MATLAB</li>
+  <li>When the animation finishes, press <strong>Win + Alt + R</strong> again to stop</li>
+  <li>Video saved to: <code>C:\Users\YourName\Videos\Captures\</code></li>
+</ol>
+
+<h3>Tips for a good demo video:</h3>
+<ul>
+  <li>Before recording, rotate the 3D view to a nice angle</li>
+  <li>Run the simulation once first (without recording) so you know the timing</li>
+  <li>Add narration or captions explaining what's happening</li>
+</ul>
+
+<hr>
+
+<!-- ======== STEP 12 ======== -->
+<h2>Step 12 — Next Steps</h2>
+<p>Phase 1 is complete once you have a working demo. Here's what comes next:</p>
+
+<h3>Phase 2: Multi-Drone Extension (~5-6 hours)</h3>
+<ul>
+  <li>Add 2-3 more drones with different start/goal positions</li>
+  <li>Plan paths sequentially (drone 1's path becomes an obstacle for drone 2)</li>
+  <li>Visualize all drones flying simultaneously without collisions</li>
+</ul>
+
+<h3>Phase 3: Dynamic Avoidance (~4-5 hours)</h3>
+<ul>
+  <li>Introduce a surprise obstacle mid-flight</li>
+  <li>Implement reactive replanning when an obstacle appears</li>
+  <li>This is the "wow moment" for your demo video</li>
+</ul>
+
+<h3>Phase 4: Polish &amp; Packaging (~3-4 hours)</h3>
+<ul>
+  <li>Better colors, camera angles, path visualization</li>
+  <li>Record a polished 1-3 minute demo video</li>
+  <li>Write a README and push to GitHub</li>
+</ul>
+
+<hr>
+
+<!-- ======== QUICK REFERENCE ======== -->
+<h2>Quick Reference Card</h2>
+<table>
+  <tr><th>Action</th><th>Command / Location</th></tr>
+  <tr><td>Run the simulation</td><td><code>main_phase1</code></td></tr>
+  <tr><td>Check installed toolboxes</td><td><code>ver</code></td></tr>
+  <tr><td>Clear everything and start fresh</td><td><code>clear; clc; close all;</code></td></tr>
+  <tr><td>Change drone's start position</td><td>Edit <code>uavStart</code> in <code>main_phase1.m</code> line 32</td></tr>
+  <tr><td>Change drone's goal position</td><td>Edit <code>uavGoal</code> in <code>main_phase1.m</code> line 33</td></tr>
+  <tr><td>Change drone's speed</td><td>Edit <code>uavSpeed</code> in <code>main_phase1.m</code> line 29</td></tr>
+  <tr><td>Increase planning accuracy</td><td>Increase <code>MaxIterations</code> in <code>plan_uav_path.m</code> line 41</td></tr>
+  <tr><td>Add/remove buildings</td><td>Edit <code>buildingParams</code> in <code>main_phase1.m</code> lines 39-54</td></tr>
+  <tr><td>Change safety buffer</td><td>Edit <code>safetyDistance</code> in <code>main_phase1.m</code> line 26</td></tr>
+</table>
+
+<hr>
+<p><em>End of Guide</em></p>
+
+</body>
+</html>

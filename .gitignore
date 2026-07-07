@@ -1,3 +1,13 @@
+# Ignore all MATLAB scripts ONLY in the root directory (keeps Phase1/2/3 intact)
+/*.m
+
+# Ignore all document and blend files ONLY in the root directory
+/*.docx
+/*.html
+/Multi-UAV_Urban_Path_Planning_PRD.md
+/STEP_BY_STEP_GUIDE.md
+/*.blend
+
 # Blender autosaves and backup files
 *.blend1
 *.blend2

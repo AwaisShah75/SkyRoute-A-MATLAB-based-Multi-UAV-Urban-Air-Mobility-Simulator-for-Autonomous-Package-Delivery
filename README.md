@@ -17,11 +17,18 @@ The simulation features two rendering perspectives to capture the behavior of th
 
 ### 1. Dynamic Single Drone Chase System
 Locks behind a single drone, illustrating high-speed corridor weaving and reactive yielding to higher-priority traffic.
-<video src="https://github.com/AwaisShah75/SkyRoute-A-MATLAB-based-Multi-UAV-Urban-Air-Mobility-Simulator-for-Autonomous-Package-Delivery/blob/main/Chase.mp4?raw=true" controls="controls" width="100%"></video>
+
+
+https://github.com/user-attachments/assets/b2b148ab-ef92-4de5-92cf-d68b6028becd
+
+
 
 ### 2. Cinematic Overview (Complete Structure)
 Shows the coordinated behavior of the entire 10-UAV logistics network, skyscrapers, obstacles, and park plazas from an 18mm sweeping orbit camera.
-<video src="https://github.com/AwaisShah75/SkyRoute-A-MATLAB-based-Multi-UAV-Urban-Air-Mobility-Simulator-for-Autonomous-Package-Delivery/blob/main/Cinmatic.mp4?raw=true" controls="controls" width="100%"></video>
+
+
+https://github.com/user-attachments/assets/09339ffc-f234-4731-8e57-cc8fb6cfe493
+
 
 ---
 

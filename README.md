@@ -11,17 +11,39 @@
 *   **🚨 Reactive Dynamic Obstacle Avoidance:** Simulates real-world changes (e.g., emergency airspace closures, temporary towers). Drones detect dynamic obstacles spawning mid-flight and instantly compute safety-inflated bypass paths.
 *   **📊 Performance Metrics Logging:** Compiles critical logistics metrics including average path lengths, total RRT* compute time, replanning events, and near-collision records to provide measurable, data-driven outcomes.
 
----
-
 ## 🎥 Simulation Demonstrations
 
-The system features two distinct animation capture modes to highlight different layers of the autonomous flight controllers:
+The simulation features two rendering perspectives to capture the behavior of the fleet:
 
-| Cinematic Overview (Complete Structure) | Single Drone Chase Cam |
-| :---: | :---: |
-| **Wide-Angle Sweeping Orbit** | **Dynamic Target Tracker** |
-| Shows the coordinated behavior of the entire 10-UAV logistics network, skyscrapers, obstacles, and park plazas from an 18mm camera. | Locks behind a single drone, illustrating high-speed corridor weaving and reactive yielding to priority traffic. |
-| <video src="Cinmatic.mp4" controls width="100%"></video> | <video src="Chase.mp4" controls width="100%"></video> |
+### 1. Dynamic Single Drone Chase System
+Locks behind a single drone, illustrating high-speed corridor weaving and reactive yielding to higher-priority traffic.
+<video src="Chase.mp4" controls width="100%"></video>
+
+### 2. Cinematic Overview (Complete Structure)
+Shows the coordinated behavior of the entire 10-UAV logistics network, skyscrapers, obstacles, and park plazas from an 18mm sweeping orbit camera.
+<video src="Cinmatic.mp4" controls width="100%"></video>
+
+---
+
+## 💡 Understanding the Visuals
+
+When viewing the simulation animations, you will notice distinct colors and multiple flight corridors per drone:
+
+### Why are there 3 color groups?
+To demonstrate **Priority-Based Traffic Control**, the 10 drones are color-coded into 3 distinct priority tiers:
+1.  **🔵 Blue / 🟣 Purple / 💗 Magenta (High Priority - Emergency Medical):** Carry critical medical payloads. They have absolute right-of-way and fly uninterrupted.
+2.  **🟠 Orange / 🔴 Red / 🟡 Yellow / 🟢 Teal (Medium Priority - Standard Delivery):** Deliver standard commercial cargo. They yield and replan around medical drones, but maintain right-of-way over inspection drones.
+3.  **💚 Green / 🩵 Cyan / 🌸 Pink (Low Priority - Infrastructure Inspection):** Conduct structural and safety scans. They have the lowest priority and must yield and replan around all other drones.
+
+### Why are there so many path lines?
+Instead of a simple one-way flight, this is a **continuous logistics dispatch loop**. Each drone is assigned a multi-mission schedule:
+1.  Take off from its home base (square markers on the city borders).
+2.  Fly to **Delivery Target 1** (torus ring) ➔ Package delivered.
+3.  Return to its home base to restock/recharge.
+4.  Take off again to complete **Delivery Target 2**.
+5.  Return to its home base to finish its shift.
+
+The multiple lines traced in the sky represent this entire **Base ➔ Goal 1 ➔ Base ➔ Goal 2 ➔ Base** flight cycle for each drone, illustrating the persistent operation of a city-wide autonomous cargo network.
 
 ---
 
